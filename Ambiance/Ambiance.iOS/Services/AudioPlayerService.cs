@@ -33,10 +33,10 @@ namespace Ambiance.iOS.Services
                 _audioPlayer.FinishedPlaying -= Player_FinishedPlaying;
                 _audioPlayer.Stop();
             }
-
-            string localUrl = pathToAudioFile;
-            _audioPlayer = AVAudioPlayer.FromUrl(NSUrl.FromFilename(localUrl));
+            
+            _audioPlayer = AVAudioPlayer.FromUrl(NSUrl.FromFilename(pathToAudioFile));
             _audioPlayer.FinishedPlaying += Player_FinishedPlaying;
+            _audioPlayer.Volume = 0.50f;
             _audioPlayer.Play();
         }
 

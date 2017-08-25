@@ -13,10 +13,6 @@ namespace Ambiance.Droid.Services
 
         public Action OnFinishedPlaying { get; set; }
 
-        public AudioPlayerService()
-        {
-        }
-
         public void Play(string pathToSoundName)
         {
             if (_mediaPlayer != null)
@@ -51,7 +47,7 @@ namespace Ambiance.Droid.Services
                 }
 
                 _mediaPlayer.Reset();
-                _mediaPlayer.SetVolume(1.0f, 1.0f);
+                _mediaPlayer.SetVolume(0.5f, 0.5f);
 
                 _mediaPlayer.SetDataSource(afd.FileDescriptor, afd.StartOffset, afd.Length);
                 _mediaPlayer.PrepareAsync();
@@ -74,6 +70,8 @@ namespace Ambiance.Droid.Services
         }
 
         public void SetAudioVolume(float level)
-        { }
+        {
+            _mediaPlayer?.SetVolume(level,level);
+        }
     }
 }
