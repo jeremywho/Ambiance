@@ -13,7 +13,7 @@ namespace Ambiance
         {
             InitializeComponent();
 
-            MainPage = new Ambiance.MainPage();
+            MainPage = new Ambiance.AudioPlayerPage();
         }
 
         protected override void OnStart()
