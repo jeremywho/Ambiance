@@ -88,6 +88,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Services\AudioPlayer.cs" />
     <Compile Include="Services\AudioPlayerService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -116,7 +117,6 @@
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\cafe.mp3" />
-    <BundleResource Include="Resources\thunder.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

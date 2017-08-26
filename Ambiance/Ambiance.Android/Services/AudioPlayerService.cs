@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Android.Media;
 using Ambiance.Droid.Services;
 using Ambiance.Services;
 using Xamarin.Forms;
@@ -10,65 +9,29 @@ namespace Ambiance.Droid.Services
 {
     public class AudioPlayerService : IAudioPlayerService
     {
-        private Dictionary<string,MediaPlayer> _mediaPlayers = new Dictionary<string, MediaPlayer>();
+        private readonly Dictionary<string, IAudioPlayer> _audioPlayers = new Dictionary<string, IAudioPlayer>();
 
-        public Action OnFinishedPlaying { get; set; }
-
-        public void Play(string pathToSoundName)
+        public IAudioPlayer GetAudioPlayer(string audioFilePath)
         {
-            if (_mediaPlayers.ContainsKey(pathToSoundName))
-            {
-                _mediaPlayers[pathToSoundName].Completion -= MediaPlayer_Completion;
-                _mediaPlayers[pathToSoundName].Stop();
-            }
+            if (!_audioPlayers.ContainsKey(audioFilePath))
+                _audioPlayers[audioFilePath] = new AudioPlayer(audioFilePath);
 
-            var fullPath = pathToSoundName;
-
-            Android.Content.Res.AssetFileDescriptor afd = null;
-
-            try
-            {
-                afd = Forms.Context.Assets.OpenFd(fullPath);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error openfd: " + ex);
-            }
-            if (afd != null)
-            {
-                System.Diagnostics.Debug.WriteLine("Length " + afd.Length);
-                if (!_mediaPlayers.ContainsKey(pathToSoundName))
-                {
-                    _mediaPlayers[pathToSoundName] = new MediaPlayer();
-                    _mediaPlayers[pathToSoundName].Prepared += (sender, args) =>
-                    {
-                        _mediaPlayers[pathToSoundName].Start();
-                        _mediaPlayers[pathToSoundName].Completion += MediaPlayer_Completion;
-                    };
-                }
-
-                _mediaPlayers[pathToSoundName].Reset();
-                _mediaPlayers[pathToSoundName].SetVolume(0.5f, 0.5f);
-
-                _mediaPlayers[pathToSoundName].SetDataSource(afd.FileDescriptor, afd.StartOffset, afd.Length);
-                _mediaPlayers[pathToSoundName].PrepareAsync();
-            }
+            return _audioPlayers[audioFilePath];
         }
 
-        void MediaPlayer_Completion(object sender, EventArgs e)
+        public void RemoveAudioPlayer(string audioFilePath)
         {
-            OnFinishedPlaying?.Invoke();
+            throw new NotImplementedException();
         }
 
-        public void Pause(string pathToAudioFile)
+        public void PauseAll()
         {
-            _mediaPlayers[pathToAudioFile]?.Pause();
+            throw new NotImplementedException();
         }
 
-        public void SetAudioVolume(string pathToAudioFile, float level)
+        public void ResumeAll()
         {
-            if (!_mediaPlayers.ContainsKey(pathToAudioFile)) return;
-            _mediaPlayers[pathToAudioFile]?.SetVolume(level,level);
+            throw new NotImplementedException();
         }
     }
 }

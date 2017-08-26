@@ -6,7 +6,7 @@ namespace Ambiance.ViewModels
 {
     public class AudioPlayerViewModel : BaseViewModel
     {
-        private readonly IAudioPlayerService _audioPlayer;
+        private readonly IAudioPlayer _audioPlayer;
         private bool _isStopped;
         private int _volume = 50;
 
@@ -22,7 +22,7 @@ namespace Ambiance.ViewModels
             }
         }
 
-        public AudioPlayerViewModel(IAudioPlayerService audioPlayer)
+        public AudioPlayerViewModel(IAudioPlayer audioPlayer)
         {
             _audioPlayer = audioPlayer;
             _audioPlayer.OnFinishedPlaying = () =>
@@ -42,16 +42,15 @@ namespace Ambiance.ViewModels
             {
                 _volume = value;
                 OnPropertyChanged();
-                _audioPlayer?.SetAudioVolume(PathToAudioFile, value / 100.0f);
+                _audioPlayer?.SetAudioVolume(value / 100.0f);
             }
         }
-
 
         private string _commandText;
 
         public string CommandText
         {
-            get { return _commandText; }
+            get => _commandText;
             set
             {
                 _commandText = value;
@@ -73,19 +72,19 @@ namespace Ambiance.ViewModels
                                    if (_isStopped)
                                    {
                                        _isStopped = false;
-                                       _audioPlayer.Play(PathToAudioFile);
+                                       _audioPlayer.Play();
                                        //_audioPlayer.Play("Galway.mp3");
                                        //_audioPlayer.Play("Rain.mp3");
                                    }
                                    else
                                    {
-                                       _audioPlayer.Play(PathToAudioFile);
+                                       _audioPlayer.Play();
                                    }
                                    CommandText = "Pause";
                                }
                                else
                                {
-                                   _audioPlayer.Pause(PathToAudioFile);
+                                   _audioPlayer.Pause();
                                    CommandText = "Play";
                                }
                            }));

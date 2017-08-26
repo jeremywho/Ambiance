@@ -1,11 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using Ambiance.Services;
+using Xamarin.Forms;
 
 namespace Ambiance.ViewModels
 {
     public class AudioPlayerListViewModel : BaseViewModel
     {
-        private readonly IAudioPlayerService _audioPlayer;
+        private readonly IAudioPlayerService _audioPlayerService = DependencyService.Get<IAudioPlayerService>();
         public ObservableCollection<AudioPlayerViewModel> Items { get; } = new ObservableCollection<AudioPlayerViewModel>();
 
         private string _pageTitle = "";
@@ -14,13 +15,12 @@ namespace Ambiance.ViewModels
             get => _pageTitle;
             set { _pageTitle = value; OnPropertyChanged(); } 
         }
-        public AudioPlayerListViewModel(IAudioPlayerService audioPlayer)
+
+        public AudioPlayerListViewModel()
         {
-            _audioPlayer = audioPlayer;
-            Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "Galway.mp3" });
-            Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "rain.mp3" });
-            Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "cafe.mp3" });
-            Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "thunder.mp3" });
+            Items.Add(new AudioPlayerViewModel(_audioPlayerService.GetAudioPlayer("Galway.mp3")));
+            Items.Add(new AudioPlayerViewModel(_audioPlayerService.GetAudioPlayer("rain.mp3")));
+            Items.Add(new AudioPlayerViewModel(_audioPlayerService.GetAudioPlayer("cafe.mp3")));
 
             PageTitle = "AMBIANCE";
         }

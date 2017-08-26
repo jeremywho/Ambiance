@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Ambiance.iOS.Services;
 using AVFoundation;
-using Foundation;
 using Xamarin.Forms;
 using Ambiance.Services;
 
@@ -11,7 +10,7 @@ namespace Ambiance.iOS.Services
 {
     public class AudioPlayerService : IAudioPlayerService
     {
-        Dictionary<string, AVAudioPlayer> _audioPlayers = new Dictionary<string, AVAudioPlayer>();
+        private readonly Dictionary<string, IAudioPlayer> _audioPlayers = new Dictionary<string, IAudioPlayer>();
         public Action OnFinishedPlaying { get; set; }
 
         public AudioPlayerService()
@@ -27,39 +26,26 @@ namespace Ambiance.iOS.Services
                     activationError.LocalizedDescription);
         }
 
-        public void Play(string pathToAudioFile)
+        public IAudioPlayer GetAudioPlayer(string audioFilePath)
         {
-            if (_audioPlayers.ContainsKey(pathToAudioFile))
-            {
-                _audioPlayers[pathToAudioFile].FinishedPlaying -= Player_FinishedPlaying;
-                _audioPlayers[pathToAudioFile].Stop();
-            }
+            if (!_audioPlayers.ContainsKey(audioFilePath))
+                _audioPlayers[audioFilePath] = new AudioPlayer(audioFilePath);
 
-            string localUrl = pathToAudioFile;
-            _audioPlayers[pathToAudioFile] = AVAudioPlayer.FromUrl(NSUrl.FromFilename(localUrl));
-            _audioPlayers[pathToAudioFile].FinishedPlaying += Player_FinishedPlaying;
-            _audioPlayers[pathToAudioFile].Play();
+            return _audioPlayers[audioFilePath];
         }
 
-        private void Player_FinishedPlaying(object sender, AVStatusEventArgs e)
+        public void RemoveAudioPlayer(string audioFilePath)
         {
-            OnFinishedPlaying?.Invoke();
+            // TODO: Implement when we want to add/remove audio players
         }
 
-        public void Pause(string pathToAudioFile)
+        public void PauseAll()
         {
-            _audioPlayers[pathToAudioFile]?.Pause();
         }
 
-        //public void Play(string pathToAudioFile)
-        //{
-        //    _audioPlayers[pathToAudioFile]?.Play();
-        //}
-
-        public void SetAudioVolume(string pathToAudioFile, float level)
+        public void ResumeAll()
         {
-            if (!_audioPlayers.ContainsKey(pathToAudioFile)) return;
-            _audioPlayers[pathToAudioFile].Volume = level;
+
         }
     }
 }

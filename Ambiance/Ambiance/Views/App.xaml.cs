@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Xamarin.Forms;
 
-using Xamarin.Forms;
-
-namespace Ambiance
+namespace Ambiance.Views
 {
     public partial class App : Application
     {

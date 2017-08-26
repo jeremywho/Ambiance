@@ -3,7 +3,7 @@ using Ambiance.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Ambiance
+namespace Ambiance.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AudioPlayerPage : ContentPage
@@ -11,8 +11,7 @@ namespace Ambiance
         public AudioPlayerPage()
         {
             InitializeComponent();
-            var audioService = DependencyService.Get<IAudioPlayerService>();
-            BindingContext = new AudioPlayerListViewModel(audioService);
+            BindingContext = new AudioPlayerListViewModel();
         }
     }
 }
