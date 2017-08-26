@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using Ambiance.Services;
 
 namespace Ambiance.ViewModels
@@ -24,9 +19,9 @@ namespace Ambiance.ViewModels
             _audioPlayer = audioPlayer;
             Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "Galway.mp3" });
             Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "rain.mp3" });
+            Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "cafe.mp3" });
 
             PageTitle = "AMBIANCE";
-            //OnPropertyChanged("Items");
         }
     }
 }

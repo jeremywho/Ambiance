@@ -11,7 +11,6 @@ namespace Ambiance.Droid.Services
     public class AudioPlayerService : IAudioPlayerService
     {
         private Dictionary<string,MediaPlayer> _mediaPlayers = new Dictionary<string, MediaPlayer>();
-        //private MediaPlayer _mediaPlayer;
 
         public Action OnFinishedPlaying { get; set; }
 

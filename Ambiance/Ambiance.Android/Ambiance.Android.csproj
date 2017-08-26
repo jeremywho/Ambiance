@@ -17,7 +17,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
@@ -146,12 +146,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ambiance\Ambiance.csproj">
-      <Project>{6906f246-301d-4cb4-92f2-40269dd9bbfa}</Project>
+      <Project>{B3102171-4459-41E6-B3B7-0638B6C88FFA}</Project>
       <Name>Ambiance</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Galway.mp3" />
+    <AndroidAsset Include="Assets\cafe.mp3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\rain.mp3" />

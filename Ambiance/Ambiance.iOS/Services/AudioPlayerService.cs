@@ -12,7 +12,6 @@ namespace Ambiance.iOS.Services
     public class AudioPlayerService : IAudioPlayerService
     {
         Dictionary<string, AVAudioPlayer> _audioPlayers = new Dictionary<string, AVAudioPlayer>();
-        //private AVAudioPlayer _audioPlayer;
         public Action OnFinishedPlaying { get; set; }
 
         public AudioPlayerService()
@@ -59,7 +58,7 @@ namespace Ambiance.iOS.Services
 
         public void SetAudioVolume(string pathToAudioFile, float level)
         {
-            if (_audioPlayers.ContainsKey(pathToAudioFile)) return;
+            if (!_audioPlayers.ContainsKey(pathToAudioFile)) return;
             _audioPlayers[pathToAudioFile].Volume = level;
         }
     }
