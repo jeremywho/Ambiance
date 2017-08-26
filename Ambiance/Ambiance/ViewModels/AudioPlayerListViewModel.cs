@@ -13,7 +13,7 @@ namespace Ambiance.ViewModels
         public string PageTitle
         {
             get => _pageTitle;
-            set { _pageTitle = value; OnPropertyChanged(); } 
+            set => SetField(ref _pageTitle, value);
         }
 
         public AudioPlayerListViewModel()

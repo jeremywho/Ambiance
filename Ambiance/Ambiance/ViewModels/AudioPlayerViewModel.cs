@@ -15,11 +15,7 @@ namespace Ambiance.ViewModels
         public string PathToAudioFile
         {
             get => _pathToAudioFile;
-            set
-            {
-                _pathToAudioFile = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _pathToAudioFile, value);
         }
 
         public AudioPlayerViewModel(IAudioPlayer audioPlayer)
@@ -40,8 +36,7 @@ namespace Ambiance.ViewModels
             get => _volume;
             set
             {
-                _volume = value;
-                OnPropertyChanged();
+                SetField(ref _volume, value);
                 _audioPlayer?.SetAudioVolume(value / 100.0f);
             }
         }
@@ -51,11 +46,7 @@ namespace Ambiance.ViewModels
         public string CommandText
         {
             get => _commandText;
-            set
-            {
-                _commandText = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _commandText, value);
         }
 
         private ICommand _playPauseCommand;
@@ -73,8 +64,6 @@ namespace Ambiance.ViewModels
                                    {
                                        _isStopped = false;
                                        _audioPlayer.Play();
-                                       //_audioPlayer.Play("Galway.mp3");
-                                       //_audioPlayer.Play("Rain.mp3");
                                    }
                                    else
                                    {
