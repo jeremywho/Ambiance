@@ -116,6 +116,7 @@
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\cafe.mp3" />
+    <BundleResource Include="Resources\thunder.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

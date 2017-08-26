@@ -20,6 +20,7 @@ namespace Ambiance.ViewModels
             Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "Galway.mp3" });
             Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "rain.mp3" });
             Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "cafe.mp3" });
+            Items.Add(new AudioPlayerViewModel(_audioPlayer) { PathToAudioFile = "thunder.mp3" });
 
             PageTitle = "AMBIANCE";
         }

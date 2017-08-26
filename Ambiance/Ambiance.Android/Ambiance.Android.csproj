@@ -35,10 +35,10 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType></DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -153,6 +153,7 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Galway.mp3" />
     <AndroidAsset Include="Assets\cafe.mp3" />
+    <AndroidAsset Include="Assets\thunder.mp3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\rain.mp3" />
