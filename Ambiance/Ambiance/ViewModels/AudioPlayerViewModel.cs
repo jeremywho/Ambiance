@@ -10,10 +10,23 @@ namespace Ambiance.ViewModels
         private bool _isStopped;
         private int _volume = 50;
 
+        private string _pathToAudioFile;
+
+        public string PathToAudioFile
+        {
+            get => _pathToAudioFile;
+            set
+            {
+                _pathToAudioFile = value;
+                OnPropertyChanged();
+            }
+        }
+
         public AudioPlayerViewModel(IAudioPlayerService audioPlayer)
         {
             _audioPlayer = audioPlayer;
-            _audioPlayer.OnFinishedPlaying = () => {
+            _audioPlayer.OnFinishedPlaying = () =>
+            {
                 _isStopped = true;
                 CommandText = "Play";
             };
@@ -21,21 +34,21 @@ namespace Ambiance.ViewModels
             _isStopped = true;
         }
 
-        
 
         public int Volume
         {
             get => _volume;
             set
-            {                
+            {
                 _volume = value;
                 OnPropertyChanged();
-                _audioPlayer?.SetAudioVolume(value / 100.0f);
+                _audioPlayer?.SetAudioVolume(PathToAudioFile, value / 100.0f);
             }
         }
 
 
         private string _commandText;
+
         public string CommandText
         {
             get { return _commandText; }
@@ -43,11 +56,11 @@ namespace Ambiance.ViewModels
             {
                 _commandText = value;
                 OnPropertyChanged();
-                
             }
         }
 
         private ICommand _playPauseCommand;
+
         public ICommand PlayPauseCommand
         {
             get
@@ -60,18 +73,19 @@ namespace Ambiance.ViewModels
                                    if (_isStopped)
                                    {
                                        _isStopped = false;
-                                       _audioPlayer.Play("Galway.mp3");
+                                       _audioPlayer.Play(PathToAudioFile);
+                                       //_audioPlayer.Play("Galway.mp3");
                                        //_audioPlayer.Play("Rain.mp3");
                                    }
                                    else
                                    {
-                                       _audioPlayer.Play();
+                                       _audioPlayer.Play(PathToAudioFile);
                                    }
                                    CommandText = "Pause";
                                }
                                else
                                {
-                                   _audioPlayer.Pause();
+                                   _audioPlayer.Pause(PathToAudioFile);
                                    CommandText = "Play";
                                }
                            }));

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ambiance.iOS.Services;
 using AVFoundation;
 using Foundation;
@@ -10,7 +11,8 @@ namespace Ambiance.iOS.Services
 {
     public class AudioPlayerService : IAudioPlayerService
     {
-        private AVAudioPlayer _audioPlayer;
+        Dictionary<string, AVAudioPlayer> _audioPlayers = new Dictionary<string, AVAudioPlayer>();
+        //private AVAudioPlayer _audioPlayer;
         public Action OnFinishedPlaying { get; set; }
 
         public AudioPlayerService()
@@ -28,16 +30,16 @@ namespace Ambiance.iOS.Services
 
         public void Play(string pathToAudioFile)
         {
-            if (_audioPlayer != null)
+            if (_audioPlayers.ContainsKey(pathToAudioFile))
             {
-                _audioPlayer.FinishedPlaying -= Player_FinishedPlaying;
-                _audioPlayer.Stop();
+                _audioPlayers[pathToAudioFile].FinishedPlaying -= Player_FinishedPlaying;
+                _audioPlayers[pathToAudioFile].Stop();
             }
-            
-            _audioPlayer = AVAudioPlayer.FromUrl(NSUrl.FromFilename(pathToAudioFile));
-            _audioPlayer.FinishedPlaying += Player_FinishedPlaying;
-            _audioPlayer.Volume = 0.50f;
-            _audioPlayer.Play();
+
+            string localUrl = pathToAudioFile;
+            _audioPlayers[pathToAudioFile] = AVAudioPlayer.FromUrl(NSUrl.FromFilename(localUrl));
+            _audioPlayers[pathToAudioFile].FinishedPlaying += Player_FinishedPlaying;
+            _audioPlayers[pathToAudioFile].Play();
         }
 
         private void Player_FinishedPlaying(object sender, AVStatusEventArgs e)
@@ -45,20 +47,20 @@ namespace Ambiance.iOS.Services
             OnFinishedPlaying?.Invoke();
         }
 
-        public void Pause()
+        public void Pause(string pathToAudioFile)
         {
-            _audioPlayer?.Pause();
+            _audioPlayers[pathToAudioFile]?.Pause();
         }
 
-        public void Play()
-        {
-            _audioPlayer?.Play();
-        }
+        //public void Play(string pathToAudioFile)
+        //{
+        //    _audioPlayers[pathToAudioFile]?.Play();
+        //}
 
-        public void SetAudioVolume(float level)
+        public void SetAudioVolume(string pathToAudioFile, float level)
         {
-            if (_audioPlayer == null) return;
-            _audioPlayer.Volume = level;
+            if (_audioPlayers.ContainsKey(pathToAudioFile)) return;
+            _audioPlayers[pathToAudioFile].Volume = level;
         }
     }
 }

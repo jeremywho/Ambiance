@@ -5,9 +5,8 @@ namespace Ambiance.Services
     public interface IAudioPlayerService
     {
         void Play(string pathToAudioFile);
-        void Play();
-        void Pause();
+        void Pause(string pathToAudioFile);
         Action OnFinishedPlaying { get; set; }
-        void SetAudioVolume(float level);
+        void SetAudioVolume(string pathToAudioFile,float level);
     }
 }

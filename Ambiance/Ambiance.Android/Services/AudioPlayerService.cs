@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.Media;
 using Ambiance.Droid.Services;
 using Ambiance.Services;
@@ -9,16 +10,17 @@ namespace Ambiance.Droid.Services
 {
     public class AudioPlayerService : IAudioPlayerService
     {
-        private MediaPlayer _mediaPlayer;
+        private Dictionary<string,MediaPlayer> _mediaPlayers = new Dictionary<string, MediaPlayer>();
+        //private MediaPlayer _mediaPlayer;
 
         public Action OnFinishedPlaying { get; set; }
 
         public void Play(string pathToSoundName)
         {
-            if (_mediaPlayer != null)
+            if (_mediaPlayers.ContainsKey(pathToSoundName))
             {
-                _mediaPlayer.Completion -= MediaPlayer_Completion;
-                _mediaPlayer.Stop();
+                _mediaPlayers[pathToSoundName].Completion -= MediaPlayer_Completion;
+                _mediaPlayers[pathToSoundName].Stop();
             }
 
             var fullPath = pathToSoundName;
@@ -36,21 +38,21 @@ namespace Ambiance.Droid.Services
             if (afd != null)
             {
                 System.Diagnostics.Debug.WriteLine("Length " + afd.Length);
-                if (_mediaPlayer == null)
+                if (!_mediaPlayers.ContainsKey(pathToSoundName))
                 {
-                    _mediaPlayer = new MediaPlayer();
-                    _mediaPlayer.Prepared += (sender, args) =>
+                    _mediaPlayers[pathToSoundName] = new MediaPlayer();
+                    _mediaPlayers[pathToSoundName].Prepared += (sender, args) =>
                     {
-                        _mediaPlayer.Start();
-                        _mediaPlayer.Completion += MediaPlayer_Completion;
+                        _mediaPlayers[pathToSoundName].Start();
+                        _mediaPlayers[pathToSoundName].Completion += MediaPlayer_Completion;
                     };
                 }
 
-                _mediaPlayer.Reset();
-                _mediaPlayer.SetVolume(0.5f, 0.5f);
+                _mediaPlayers[pathToSoundName].Reset();
+                _mediaPlayers[pathToSoundName].SetVolume(0.5f, 0.5f);
 
-                _mediaPlayer.SetDataSource(afd.FileDescriptor, afd.StartOffset, afd.Length);
-                _mediaPlayer.PrepareAsync();
+                _mediaPlayers[pathToSoundName].SetDataSource(afd.FileDescriptor, afd.StartOffset, afd.Length);
+                _mediaPlayers[pathToSoundName].PrepareAsync();
             }
         }
 
@@ -59,19 +61,15 @@ namespace Ambiance.Droid.Services
             OnFinishedPlaying?.Invoke();
         }
 
-        public void Pause()
+        public void Pause(string pathToAudioFile)
         {
-            _mediaPlayer?.Pause();
+            _mediaPlayers[pathToAudioFile]?.Pause();
         }
 
-        public void Play()
+        public void SetAudioVolume(string pathToAudioFile, float level)
         {
-            _mediaPlayer?.Start();
-        }
-
-        public void SetAudioVolume(float level)
-        {
-            _mediaPlayer?.SetVolume(level,level);
+            if (!_mediaPlayers.ContainsKey(pathToAudioFile)) return;
+            _mediaPlayers[pathToAudioFile]?.SetVolume(level,level);
         }
     }
 }

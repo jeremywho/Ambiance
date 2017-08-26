@@ -12,7 +12,7 @@ namespace Ambiance
         {
             InitializeComponent();
             var audioService = DependencyService.Get<IAudioPlayerService>();
-            BindingContext = new AudioPlayerViewModel(audioService);
+            BindingContext = new AudioPlayerListViewModel(audioService);
         }
     }
 }
