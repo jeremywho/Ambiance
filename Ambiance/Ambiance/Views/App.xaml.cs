@@ -8,7 +8,7 @@ namespace Ambiance.Views
         {
             InitializeComponent();
 
-            MainPage = new Ambiance.AudioPlayerPage();
+            MainPage = new Ambiance.Views.AudioPlayerPage();
         }
 
         protected override void OnStart()
