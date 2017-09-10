@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Ambiance.Annotations;
+using Xamarin.Forms;
 
 namespace Ambiance.ViewModels
 {

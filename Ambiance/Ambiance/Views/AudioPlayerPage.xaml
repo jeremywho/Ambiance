@@ -39,7 +39,12 @@
                     </Image.GestureRecognizers>
                 </Image>
                 <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="THINGS HERE" ></Label>
-                <Image Source="plus.png" Margin="0,0,10,0"/>
+                <Image Source="plus.png" Margin="0,0,10,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding AddTrackCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

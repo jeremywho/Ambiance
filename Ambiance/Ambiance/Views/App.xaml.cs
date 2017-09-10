@@ -8,7 +8,8 @@ namespace Ambiance.Views
         {
             InitializeComponent();
 
-            MainPage = new AudioPlayerPage();
+            MainPage = new NavigationPage(new AudioPlayerPage());
+            
             //MainPage = new MasterDetailPage
             //{
             //    MasterBehavior = MasterBehavior.Popover,

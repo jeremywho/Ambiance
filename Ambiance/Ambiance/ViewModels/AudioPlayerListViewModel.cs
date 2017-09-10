@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Ambiance.Services;
+using Ambiance.Views;
 using Xamarin.Forms;
 
 namespace Ambiance.ViewModels
@@ -14,6 +15,7 @@ namespace Ambiance.ViewModels
         public bool CanDelete = true;
         public ICommand DeleteCommand { get; }
         public ICommand PlayPauseAllCommand { get; }
+        public ICommand AddTrackCommand { get; }
         private readonly IAudioPlayerService _audioPlayerService = DependencyService.Get<IAudioPlayerService>();
         public ObservableCollection<AudioPlayerViewModel> Items { get; } = new ObservableCollection<AudioPlayerViewModel>();
 
@@ -46,6 +48,12 @@ namespace Ambiance.ViewModels
             OnPropertyChanged(nameof(ShowPause));
         }
 
+        public void AddTrack()
+        {
+            var navPage = Application.Current.MainPage as NavigationPage;
+            navPage?.Navigation?.PushModalAsync(new SoundPicker());
+        }
+
         public AudioPlayerListViewModel()
         {
             Items.Add(new AudioPlayerViewModel(_audioPlayerService.GetAudioPlayer("Galway.mp3"), "Irish", "irish.png"));
@@ -56,6 +64,7 @@ namespace Ambiance.ViewModels
 
             DeleteCommand = new Command<AudioPlayerViewModel>(Delete);
             PlayPauseAllCommand = new Command(PlayPauseAll);
+            AddTrackCommand = new Command(AddTrack);
         }
     }
 
