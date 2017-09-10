@@ -3,19 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ambiance="clr-namespace:Ambiance;assembly=Ambiance"
              xmlns:views="clr-namespace:Ambiance.Views;assembly=Ambiance"
-             x:Class="Ambiance.Views.AudioPlayerPage">
+             x:Class="Ambiance.Views.AudioPlayerPage"
+             x:Name="AudioPlayerListPage" BackgroundImage="background.jpg">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding PageTitle}" FontSize="24" Margin="10"></Label>
-            <ListView x:Name="Sounds" ItemsSource="{Binding Items}" RowHeight="100">
+        <Grid BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="{Binding PageTitle}" FontSize="24" Margin="10,40,0,40"></Label>
+            <ListView Grid.Row="1" x:Name="Sounds" ItemsSource="{Binding Items}" RowHeight="100" BackgroundColor="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <views:AudioPlayerView></views:AudioPlayerView>
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Name=AudioPlayerListPage}}" CommandParameter="{Binding .}" IsDestructive="True" Text="Delete"></MenuItem>
+                            </ViewCell.ContextActions>
+                            <views:AudioPlayerView BackgroundColor="Transparent"></views:AudioPlayerView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="FillAndExpand" HeightRequest="75" BackgroundColor="AliceBlue" Opacity="0.5">
+                <Image Source="play.png" IsVisible="{Binding ShowPlay}" Margin="10,0,0,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding PlayPauseAllCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="pause.png" IsVisible="{Binding ShowPause}" Margin="10,0,0,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding PlayPauseAllCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="THINGS HERE" ></Label>
+                <Image Source="plus.png" Margin="0,0,10,0"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

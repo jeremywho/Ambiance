@@ -9,6 +9,8 @@ namespace Ambiance.ViewModels
         private readonly IAudioPlayer _audioPlayer;
         private bool _isStopped;
         private int _volume = 50;
+        public string TrackName { get; }
+        public string TrackIcon { get; }
 
         private string _pathToAudioFile;
 
@@ -18,8 +20,10 @@ namespace Ambiance.ViewModels
             set => SetField(ref _pathToAudioFile, value);
         }
 
-        public AudioPlayerViewModel(IAudioPlayer audioPlayer)
+        public AudioPlayerViewModel(IAudioPlayer audioPlayer, string trackName, string trackIcon)
         {
+            TrackName = trackName;
+            TrackIcon = trackIcon;
             _audioPlayer = audioPlayer;
             _audioPlayer.OnFinishedPlaying = () =>
             {
@@ -28,8 +32,20 @@ namespace Ambiance.ViewModels
             };
             CommandText = "Play";
             _isStopped = true;
+
+            _audioPlayer.Play();
+            _audioPlayer.Pause();
         }
 
+        public void Play()
+        {
+            _audioPlayer.Play();
+        }
+
+        public void Pause()
+        {
+            _audioPlayer.Pause();
+        }
 
         public int Volume
         {

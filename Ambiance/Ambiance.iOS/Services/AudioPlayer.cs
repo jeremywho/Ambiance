@@ -1,11 +1,8 @@
 ﻿using System;
-using Ambiance.iOS.Services;
 using AVFoundation;
-using Xamarin.Forms;
 using Ambiance.Services;
 using Foundation;
 
-[assembly: Dependency(typeof(AudioPlayer))]
 namespace Ambiance.iOS.Services
 {
     public class AudioPlayer : IAudioPlayer

@@ -1,10 +1,8 @@
 ﻿using System;
-using Ambiance.Droid.Services;
 using Ambiance.Services;
 using Android.Media;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(AudioPlayer))]
 namespace Ambiance.Droid.Services
 {
     public class AudioPlayer : IAudioPlayer

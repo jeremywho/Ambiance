@@ -38,7 +38,8 @@
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType></DebugType>
+    <DebugType>
+    </DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -123,6 +124,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AudioPlayer.cs" />
     <Compile Include="Services\AudioPlayerService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +155,6 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Galway.mp3" />
     <AndroidAsset Include="Assets\cafe.mp3" />
-    <AndroidAsset Include="Assets\thunder.mp3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\rain.mp3" />

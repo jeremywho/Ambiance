@@ -8,7 +8,13 @@ namespace Ambiance.Views
         {
             InitializeComponent();
 
-            MainPage = new Ambiance.Views.AudioPlayerPage();
+            MainPage = new AudioPlayerPage();
+            //MainPage = new MasterDetailPage
+            //{
+            //    MasterBehavior = MasterBehavior.Popover,
+            //    Master = new SoundPicker {Title = "Ambiance"},
+            //    Detail = new NavigationPage(new AudioPlayerPage())
+            //};
         }
 
         protected override void OnStart()
