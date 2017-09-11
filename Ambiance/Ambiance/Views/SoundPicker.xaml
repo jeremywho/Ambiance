@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ambiance.Views.SoundPicker">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Black">
+        <StackLayout BackgroundColor="#222222" Opacity="0.8" Padding="0,20,0,0">
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="75" BackgroundColor="AliceBlue" Opacity="0.5">
                 <Image Source="play.png" IsVisible="{Binding ShowPlay}" Margin="10,0,0,0">
                     <Image.GestureRecognizers>
@@ -17,7 +17,8 @@
                             Command="{Binding PlayPauseAllCommand}" />
                     </Image.GestureRecognizers>
                 </Image>
-                <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="THINGS HERE" ></Label>
+                <!--<Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="THINGS HERE" ></Label>-->
+                <Label Text="{Binding PageTitle}" FontSize="24" Margin="10,40,0,40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
                 <Image Source="plus.png" Margin="0,0,10,0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer

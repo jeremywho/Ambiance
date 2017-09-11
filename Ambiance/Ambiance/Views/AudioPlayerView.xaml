@@ -15,7 +15,7 @@
               </Image.Source>
           </Image>
             <StackLayout Orientation="Vertical" Grid.Column="1" Margin="0,10,10,0">
-                <Label Text="{Binding TrackName}"></Label>
+                <!--<Label Text="{Binding TrackName}"></Label>-->
                 <Slider HorizontalOptions="FillAndExpand" x:Name="Slider" Minimum="0" Maximum="100" Value="{Binding Volume, Mode=TwoWay}" />
             </StackLayout>
         </Grid>

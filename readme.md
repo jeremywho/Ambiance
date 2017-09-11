@@ -1,0 +1,8 @@
+# TODO
+
+- [ ] Change status bar text color (iOS - couldnt get BarTextColor to work)
+- [ ] figure out what to do with icons colors (use svg and change color dynamically? Set color for each?)
+- [ ] slider styling
+- [ ] add all available tracks to add page
+- [ ] add support for adding tracks
+- [ ] add support for saving/switching different sound profiles

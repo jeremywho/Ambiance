@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambiance.Android", "Ambiance\Ambiance.Android\Ambiance.Android.csproj", "{5A9EA16A-B9DE-493E-A998-ECB1CBC30C09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambiance", "Ambiance\Ambiance\Ambiance.csproj", "{B3102171-4459-41E6-B3B7-0638B6C88FFA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambiance.iOS", "Ambiance\Ambiance.iOS\Ambiance.iOS.csproj", "{B3F3FE65-7FEB-4BC3-A2DA-FD1C0123807A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BA06670-634A-46A4-AE49-CCEB4901B19F}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

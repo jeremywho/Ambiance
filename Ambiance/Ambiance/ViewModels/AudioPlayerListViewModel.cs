@@ -51,7 +51,8 @@ namespace Ambiance.ViewModels
         public void AddTrack()
         {
             var navPage = Application.Current.MainPage as NavigationPage;
-            navPage?.Navigation?.PushModalAsync(new SoundPicker());
+            var sp = new SoundPicker {BindingContext = this};
+            navPage?.Navigation?.PushModalAsync(sp);
         }
 
         public AudioPlayerListViewModel()

@@ -12,8 +12,8 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Text="{Binding PageTitle}" FontSize="24" Margin="10,40,0,40"></Label>
-            <ListView Grid.Row="1" x:Name="Sounds" ItemsSource="{Binding Items}" RowHeight="100" BackgroundColor="Transparent">
+            <!--<Label Grid.Row="0" Text="{Binding PageTitle}" FontSize="24" Margin="10,40,0,40"></Label>-->
+            <ListView Grid.Row="1" Margin="0,20,0,0" x:Name="Sounds" ItemsSource="{Binding Items}" RowHeight="100" BackgroundColor="Transparent" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -38,7 +38,8 @@
                             Command="{Binding PlayPauseAllCommand}" />
                     </Image.GestureRecognizers>
                 </Image>
-                <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="THINGS HERE" ></Label>
+                <!--<Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="THINGS HERE" ></Label>-->
+                <Label Text="{Binding PageTitle}" FontSize="24" Margin="10,40,0,40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
                 <Image Source="plus.png" Margin="0,0,10,0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
