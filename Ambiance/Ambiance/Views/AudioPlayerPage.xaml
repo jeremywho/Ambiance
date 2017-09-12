@@ -12,7 +12,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <!--<Label Grid.Row="0" Text="{Binding PageTitle}" FontSize="24" Margin="10,40,0,40"></Label>-->
+            <Label Grid.Row="0" Text="{Binding PageTitle}" FontSize="32" Margin="10,60,0,20" TextColor="Azure" FontFamily="Palatino-Roman"></Label>
             <ListView Grid.Row="1" Margin="0,20,0,0" x:Name="Sounds" ItemsSource="{Binding Items}" RowHeight="100" BackgroundColor="Transparent" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -25,27 +25,42 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="FillAndExpand" HeightRequest="75" BackgroundColor="AliceBlue" Opacity="0.5">
-                <Image Source="play.png" IsVisible="{Binding ShowPlay}" Margin="10,0,0,0">
+            <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="FillAndExpand" HeightRequest="75" BackgroundColor="AliceBlue" Opacity="0.5" Padding="10,0,10,0">
+                <!--<Image Source="play.png" IsVisible="{Binding ShowPlay}" >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding PlayPauseAllCommand}" />
                     </Image.GestureRecognizers>
                 </Image>
-                <Image Source="pause.png" IsVisible="{Binding ShowPause}" Margin="10,0,0,0">
+                <Image Source="pause.png" IsVisible="{Binding ShowPause}" >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding PlayPauseAllCommand}" />
                     </Image.GestureRecognizers>
-                </Image>
+                </Image>-->
+                <Label Text="&#xf144;" FontSize="52" FontFamily="FontAwesome" VerticalTextAlignment="Center" IsVisible="{Binding ShowPlay}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlayPauseAllCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="&#xf28b;" FontSize="52" FontFamily="FontAwesome" VerticalTextAlignment="Center" IsVisible="{Binding ShowPause}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlayPauseAllCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
                 <!--<Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="THINGS HERE" ></Label>-->
-                <Label Text="{Binding PageTitle}" FontSize="24" Margin="10,40,0,40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
-                <Image Source="plus.png" Margin="0,0,10,0">
+                <Label Text="{Binding ConfigTitle}" FontSize="24" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                <!--<Image Source="plus.png" Margin="0,0,10,0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding AddTrackCommand}" />
                     </Image.GestureRecognizers>
-                </Image>
+                </Image>-->
+                <Label Text="&#xf106;" FontSize="50" FontFamily="FontAwesome" VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenPickerCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

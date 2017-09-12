@@ -17,17 +17,52 @@
                             Command="{Binding PlayPauseAllCommand}" />
                     </Image.GestureRecognizers>
                 </Image>
-                <!--<Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="THINGS HERE" ></Label>-->
-                <Label Text="{Binding PageTitle}" FontSize="24" Margin="10,40,0,40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
-                <Image Source="plus.png" Margin="0,0,10,0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding AddTrackCommand}" />
-                    </Image.GestureRecognizers>
-                </Image>
+                <Label Text="{Binding ConfigTitle}" FontSize="24" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                <Label Text="&#xf107;" FontSize="50" FontFamily="FontAwesome" VerticalTextAlignment="Center" Margin="0,0,10,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClosePickerCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
-            <Label Text="Sounds" />
-            <Button Clicked="Button_OnClicked" Text="Close"></Button>
+
+            <ListView Grid.Row="1" Margin="0,20,0,0" x:Name="Sounds" ItemsSource="{Binding AvailableItems}" RowHeight="100" BackgroundColor="Transparent" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" Opacity="50">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Margin="10,0,0,0" Text="{Binding TrackIcon}" FontSize="50" TextColor="{Binding TrackColor}" FontFamily="FontAwesome" VerticalTextAlignment="Center">
+                                </Label>
+                                <Grid Grid.Column="1" Margin="20,10,10,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" TextColor="Azure" FontSize="32" Text="{Binding TrackName}"></Label>
+                                    <!--<Label Grid.Column="1" Text="&#xf067;" FontSize="50" FontFamily="FontAwesome" VerticalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding AddTrackCommand}"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>-->
+                                    <Label Grid.Column="1" Text="&#xf067;" FontSize="52" FontFamily="FontAwesome" VerticalTextAlignment="Center" IsVisible="{Binding ShowAdd}">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding AddTrackCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Grid.Column="1" Text="&#xf068;" FontSize="52" FontFamily="FontAwesome" VerticalTextAlignment="Center" IsVisible="{Binding ShowRemove}">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding AddTrackCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

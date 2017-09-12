@@ -6,3 +6,6 @@
 - [ ] add all available tracks to add page
 - [ ] add support for adding tracks
 - [ ] add support for saving/switching different sound profiles
+- [ ] loop audio tracks
+- [ ] save current audio levels
+- [ ] add custom renderer for Slider customization

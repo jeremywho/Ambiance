@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Ambiance.Views
@@ -15,12 +9,6 @@ namespace Ambiance.Views
         public SoundPicker()
         {
             InitializeComponent();
-        }
-
-        private void Button_OnClicked(object sender, EventArgs e)
-        {
-            var nav = Application.Current.MainPage as NavigationPage;
-            nav?.Navigation?.PopModalAsync();
         }
     }
 }
