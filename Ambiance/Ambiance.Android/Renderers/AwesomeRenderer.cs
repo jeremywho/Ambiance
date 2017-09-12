@@ -21,7 +21,7 @@ namespace Ambiance.Droid.Renderers
             }
 
             var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets,
-                "fontawesome.ttf");
+                "FontAwesome.otf");
             label.Typeface = font;
         }
     }

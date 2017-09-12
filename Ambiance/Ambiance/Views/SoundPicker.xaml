@@ -1,22 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ambiance.Views.SoundPicker">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#222222" Opacity="0.8" Padding="0,20,0,0">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="75" BackgroundColor="AliceBlue" Opacity="0.5">
-                <Image Source="play.png" IsVisible="{Binding ShowPlay}" Margin="10,0,0,0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding PlayPauseAllCommand}" />
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image Source="pause.png" IsVisible="{Binding ShowPause}" Margin="10,0,0,0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding PlayPauseAllCommand}" />
-                    </Image.GestureRecognizers>
-                </Image>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="75" BackgroundColor="AliceBlue" Opacity="0.90" Padding="10,0,0,0">
+                <Label Text="&#xf144;" FontSize="52" FontFamily="FontAwesome" VerticalTextAlignment="Center" IsVisible="{Binding ShowPlay}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlayPauseAllCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="&#xf28b;" FontSize="52" FontFamily="FontAwesome" VerticalTextAlignment="Center" IsVisible="{Binding ShowPause}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlayPauseAllCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
                 <Label Text="{Binding ConfigTitle}" FontSize="24" Margin="0,0,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
                 <Label Text="&#xf107;" FontSize="50" FontFamily="FontAwesome" VerticalTextAlignment="Center" Margin="0,0,10,0">
                     <Label.GestureRecognizers>
